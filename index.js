@@ -2,6 +2,7 @@ var buttonColours = ["red","blue","green","yellow"];
 var gamePattern = [];
 var userClickedPattern = [];
 var isGameStart = false;
+
 var level = 0;
 // This function will work when the player starts the game and the level will go on, but if he press's wrong button , the game will over.
 
@@ -13,7 +14,7 @@ function nextSequence(){
 
     level++;
     $("#score").text("Your Score: "+(level-1)*10);
-    $("#level-title").text("Level "+level);
+    $("#levels").text("Level "+level);
 
     //Using random number to get colours out of buttonColours array
     var randomChosenColour = buttonColours[randomNumber];
@@ -41,11 +42,15 @@ $(".btn").click(function(){
 });
 
 
-$(document).keydown(function(event){
-    if((event.key==="S"||event.key==="s") && isGameStart===false){
+$("#level-title").click(function(){
+    if(isGameStart===false){
         nextSequence();
         isGameStart=true;
-        $("#level-title").text("Level "+level);
+        $("#levels").text("Level "+level);
+        $("#level-title").text("Restart Game");
+    }
+    if(isGameStart===true){
+        startOver();
     }
 });
 
@@ -65,7 +70,7 @@ function animatePress(currentColour){
 
 function checkAnswer(currentLevel){
     if(gamePattern[currentLevel]===userClickedPattern[currentLevel]){
-        console.log("SUCCESS");
+        
         if(gamePattern.length===userClickedPattern.length){
             setTimeout(function(){
                 nextSequence();
@@ -77,22 +82,17 @@ function checkAnswer(currentLevel){
         setTimeout(function(){
             $("body").removeClass("game-over");
         },200);
-
-        $("#level-title").text("Game Over, Press 'R' to Restart");
+        $("#levels").text("Game Over!");
         playSound("wrong");
     }
 }
 
-$(document).keydown(function(event){
-    if((event.key==='R'||event.key==='r')){
-        startOver();
-    }
-});
 
 function startOver(){
     level=0;
     gamePattern=[];
     isGameStart=false;
+    
     nextSequence();
 }
 

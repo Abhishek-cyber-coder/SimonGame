@@ -6,15 +6,33 @@ body {
 #level-title {
   font-family: 'Press Start 2P', cursive;
   font-size: 2rem;
-  margin:  5%;
+  padding: 2%;
+  margin:  2%;
+  border-radius: 20%;
+  border: 5px solid #FEF2BF;
   margin-bottom:10px;
   color: #FEF2BF;
+  background-color: #011F3F;
 }
 
+#level-title:hover{
+  cursor: pointer;
+  background-color: #FEF2BF;
+  color: #011F3F;
+}
+
+.level-score{
+  display:flex;
+  justify-content: space-around;
+}
+#levels{
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  color: #FEF2BF;
+}
 #score {
   font-family: 'Press Start 2P', cursive;
   font-size: 1rem;
-  margin-top: 2%;
   color: #FEF2BF;
 }
 
@@ -63,14 +81,18 @@ body {
 
 @media only screen and (max-width: 1103px){
   .container{
-    width: 50%;
+    width: 70%;
+  }
+
+  #level-title{
+    margin-bottom: 60px;
   }
 
   .btn{
     margin: 25px;
     display: inline-block;
-    height: 200px;
-    width: 200px;
+    height: 300px;
+    width: 300px;
     border: 10px solid black;
     border-radius: 20%;
     cursor: pointer;
@@ -84,14 +106,18 @@ body {
 
 @media only screen and (max-width: 400px){
   .container{
-    width: 50%;
+    width: 70%;
   }
 
+  #level-title{
+    margin-bottom: 60px;
+  }
+  
   .btn{
     margin: 25px;
     display: inline-block;
-    height: 200px;
-    width: 200px;
+    height: 300px;
+    width: 300px;
     border: 10px solid black;
     border-radius: 20%;
     cursor: pointer;
