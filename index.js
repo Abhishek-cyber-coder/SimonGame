@@ -2,6 +2,7 @@ var buttonColours = ["red","blue","green","yellow"];
 var gamePattern = [];
 var userClickedPattern = [];
 var isGameStart = false;
+$(".level-second-title").hide();
 
 var level = 0;
 // This function will work when the player starts the game and the level will go on, but if he press's wrong button , the game will over.
@@ -21,7 +22,6 @@ function nextSequence(){
 
     //Pushing new random patterns at the end of gamePattern array
     gamePattern.push(randomChosenColour);
-
     //Using randomChosenColour variable to select buttons with their colour classes and adding animation
     $("#" +randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
 
@@ -42,18 +42,16 @@ $(".btn").click(function(){
 });
 
 
-$("#level-title").click(function(){
+$(".level-first-title").click(function(){
     if(isGameStart===false){
-        nextSequence();
+        
         isGameStart=true;
         $("#levels").text("Level "+level);
-        $("#level-title").text("Restart Game");
-    }
-    if(isGameStart===true){
-        startOver();
+        $(this).hide();
+        $(".level-second-title").show().css("margin-right","1%");
+        nextSequence();
     }
 });
-
 
 function playSound(value){
     var audio = new Audio("sounds/"+value+".mp3");
@@ -88,11 +86,19 @@ function checkAnswer(currentLevel){
 }
 
 
+//Restart Game
+$(".level-second-title").click(function(){
+    
+    startOver();
+    
+})
+
+
+//Start everything from beginning
 function startOver(){
     level=0;
     gamePattern=[];
     isGameStart=false;
-    
     nextSequence();
 }
 
